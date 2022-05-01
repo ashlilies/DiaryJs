@@ -1,2 +1,26 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1 class="mb-3">My Work Journal</h1>
+
+<a class="btn btn-primary" href="/clockIn">Clock In</a>
+<a class="btn btn-primary" href="/clockOut">Clock Out</a>
+
+<div class="mt-3 mb-3">
+    <h5>Current work day info:</h5>
+    {{#if svc.currentWorkDay}}
+        <b>Start Time:</b> {{svc.currentWorkDay.startTime}}
+    {{else}}
+        <i>Not started yet.</i>
+    {{/if}}
+</div>
+
+<table class="table mt-3">
+    <tr>
+        <th>Start Time</th>
+        <th>End Time</th>
+    </tr>
+    {{#each svc.history}}
+        <tr>
+            <td>{{this.startTime}}</td>
+            <td>{{this.endTime}}</td>
+        </tr>
+    {{/each}}
+</table>
