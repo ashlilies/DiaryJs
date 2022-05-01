@@ -6,7 +6,7 @@ class WorkService {
         this.history = [];
     }
 
-    // Returns success result
+    // Return success result
     clockIn() {
         if (this.currentWorkDay == null) {
             this.currentWorkDay = new WorkDay();
@@ -15,7 +15,7 @@ class WorkService {
         return false;
     }
 
-    // Returns success result
+    // Return success result
     clockOut() {
         if (this.currentWorkDay != null) {
             this.currentWorkDay.clockOut();
@@ -24,6 +24,24 @@ class WorkService {
             return true;
         }
         return false;
+    }
+
+    get currentNote() {
+        if (this.currentWorkDay != null)
+            return this.currentWorkDay.note;
+        return null;
+    }
+    // Return success result
+    set currentNote(noteText) {
+        if (this.currentWorkDay != null) {
+            this.currentWorkDay.note = noteText;
+            return true;
+        }
+        return false;
+    }
+
+    get historyNewToOld() {
+        return this.history.slice().reverse();
     }
 }
 

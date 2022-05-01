@@ -2,6 +2,7 @@ const WorkDay = class {
     constructor() {
         this.startTime = new Date();
         this.endTime = null;
+        this.note = "";
     }
     // Property getter
     get duration() {

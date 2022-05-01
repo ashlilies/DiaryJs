@@ -7,6 +7,11 @@
     <h5>Current work day info:</h5>
     {{#if svc.currentWorkDay}}
         <b>Start Time:</b> {{svc.currentWorkDay.startTime}}
+        <form action="/updateNote" method="post">
+            <label>Notes:</label>
+            <input type="text" name="notesInput" value="{{svc.currentNote}}"/>
+            <input type="submit" value="Update"/>
+        </form>
     {{else}}
         <i>Not started yet.</i>
     {{/if}}
@@ -16,11 +21,13 @@
     <tr>
         <th>Start Time</th>
         <th>End Time</th>
+        <th>Notes</th>
     </tr>
-    {{#each svc.history}}
+    {{#each svc.historyNewToOld}}
         <tr>
             <td>{{this.startTime}}</td>
             <td>{{this.endTime}}</td>
+            <td>{{this.note}}</td>
         </tr>
     {{/each}}
 </table>
