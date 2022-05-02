@@ -21,12 +21,14 @@
     <tr>
         <th>Start Time</th>
         <th>End Time</th>
+        <th>Work Duration</th>
         <th>Notes</th>
     </tr>
     {{#each svc.historyNewToOld}}
         <tr>
             <td>{{this.startTime}}</td>
             <td>{{this.endTime}}</td>
+            <td>{{this.durationFriendly}}</td>
             <td>{{this.note}}</td>
         </tr>
     {{/each}}

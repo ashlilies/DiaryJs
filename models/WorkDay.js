@@ -1,3 +1,4 @@
+const DateTimeService = require("../services/DateTimeService");
 const WorkDay = class {
     constructor() {
         this.startTime = new Date();
@@ -7,6 +8,15 @@ const WorkDay = class {
     // Property getter
     get duration() {
         return this.calcDuration();
+    }
+
+    // Returns a friendly string that shows the duration of a completed workday
+    get durationFriendly() {
+        let duration = this.duration;
+        let dts = new DateTimeService();
+        if (duration != null)
+            return dts.getFriendlyDuration(duration);
+        return "Unavailable";
     }
     // Call this function to end the day
     clockOut() {
