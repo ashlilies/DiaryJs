@@ -3,8 +3,11 @@ var router = express.Router();
 var WorkService = require("../services/WorkService");
 
 /* GET home page. */
-router.get('/', function (req, res) {
-    res.render('index', {svc: WorkService});
+router.get('/', async function (req, res) {
+    res.render('index', {
+        svc: WorkService,
+        workdays: await WorkService.getHistoryAsync()
+    });
 });
 
 /* Clock in to work */
@@ -18,8 +21,8 @@ router.get("/clockIn", (req, res) => {
 });
 
 /* Clock out of work for the day */
-router.get("/clockOut", (req, res) => {
-    let success = WorkService.clockOut();
+router.get("/clockOut", async (req, res) => {
+    let success = await WorkService.clockOut();
     if (success)
         req.flash("message", "Successfully clocked out!");
     else

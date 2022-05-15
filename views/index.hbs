@@ -19,16 +19,18 @@
 
 <table class="table mt-3">
     <tr>
+        <th>ID</th>
         <th>Start Time</th>
         <th>End Time</th>
         <th>Work Duration</th>
         <th>Notes</th>
     </tr>
-    {{#each svc.historyNewToOld}}
+    {{#each workdays}}
         <tr>
-            <td>{{this.startTime}}</td>
-            <td>{{this.endTime}}</td>
-            <td>{{this.durationFriendly}}</td>
+            <td>{{this.id}}</td>
+            <td>{{formatDate this.startTime}}</td>
+            <td>{{formatDate this.endTime}}</td>
+            <td>{{timeDuration this.startTime this.endTime}}</td>
             <td>{{this.note}}</td>
         </tr>
     {{/each}}

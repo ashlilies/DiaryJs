@@ -1,30 +1,25 @@
 const WorkDay = require("../models/WorkDay");
-const dts = require("./DateTimeService")
 
 class WorkService {
     constructor() {
         this.currentWorkDay = null;
+        this.history = [];
     }
 
     // Return success result
     clockIn() {
         if (this.currentWorkDay == null) {
-            // Does not save to db until day over.
-            this.currentWorkDay = WorkDay.build({
-                startTime: Date()
-            });
+            this.currentWorkDay = new WorkDay();
             return true;
         }
         return false;
     }
 
     // Return success result
-    async clockOut() {
+    clockOut() {
         if (this.currentWorkDay != null) {
-            // this.currentWorkDay.clockOut();
-            // this.history.push(this.currentWorkDay);
-            this.currentWorkDay.endTime = new Date();
-            await this.currentWorkDay.save();
+            this.currentWorkDay.clockOut();
+            this.history.push(this.currentWorkDay);
             this.currentWorkDay = null;
             return true;
         }
@@ -45,8 +40,8 @@ class WorkService {
         return false;
     }
 
-    async getHistoryAsync() {
-        return (await WorkDay.findAll()).reverse();
+    get historyNewToOld() {
+        return this.history.slice().reverse();
     }
 }
 
