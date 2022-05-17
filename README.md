@@ -1,5 +1,5 @@
 # DiaryJs
-A work journal web application, for you to organize your work. Written in Express.js, using Sequelize and MySQL.
+A work journal web application, for you to organize your work. Written in Express.js, using Sequelize and MySQL/MariaDB.
 
 # Sample .env file
     SESSION_SECRET="<something secure>"
