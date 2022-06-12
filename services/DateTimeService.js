@@ -17,7 +17,7 @@ class DateTimeService {
             ++hours;
 
         if (hours < 24)
-            return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+            return `${hours} hours, ${mins} minutes, ${seconds} seconds`;
 
         let days = 0;
         for (; hours >= 24; hours -= 24)
